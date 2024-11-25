@@ -25,7 +25,7 @@ debug_mode=${DEBUG}
 log_level=${LOG_LEVEL:-warn}
 marathon_host=${MARATHON_HOST}
 sleep_duration=${MARATHON_POLL_INTERVAL:-5}
-upstreams_dynamic=${UPSTREAMS_DYNAMIC:-false}
+active_active_upstreams=${ACTIVE_ACTIVE_UPSTREAMS:-false}
 #
 # location for a remote /etc/api-gateway folder.
 # i.e s3://api-gateway-config
@@ -109,4 +109,4 @@ while true; do \
 done &
 
 echo "   ... using log level: '${log_level}'. Override it with -e 'LOG_LEVEL=<level>' "
-sudo api-gateway -p /usr/local/api-gateway/ -c /etc/api-gateway/api-gateway.conf -g "daemon off; error_log /dev/stderr ${log_level}; env UPSTREAMS_DYNAMIC=${upstreams_dynamic};"
+sudo api-gateway -p /usr/local/api-gateway/ -c /etc/api-gateway/api-gateway.conf -g "daemon off; error_log /dev/stderr ${log_level}; env ACTIVE_ACTIVE_UPSTREAMS=${active_active_upstreams};"
