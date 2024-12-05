@@ -26,6 +26,9 @@ log_level=${LOG_LEVEL:-warn}
 marathon_host=${MARATHON_HOST}
 sleep_duration=${MARATHON_POLL_INTERVAL:-5}
 active_active=${ACTIVE_ACTIVE:-false}
+active_active_set_upstream_interval=${ACTIVE_ACTIVE_SET_UPSTREAM_INTERVAL}
+active_active_status_check_interval=${ACTIVE_ACTIVE_STATUS_CHECK_INTERVAL}
+active_active_upstreams_csv_path=${ACTIVE_ACTIVE_UPSTREAMS_CSV_PATH}
 #
 # location for a remote /etc/api-gateway folder.
 # i.e s3://api-gateway-config
@@ -109,4 +112,4 @@ while true; do \
 done &
 
 echo "   ... using log level: '${log_level}'. Override it with -e 'LOG_LEVEL=<level>' "
-sudo api-gateway -p /usr/local/api-gateway/ -c /etc/api-gateway/api-gateway.conf -g "daemon off; error_log /dev/stderr ${log_level}; env ACTIVE_ACTIVE=${active_active};"
+sudo api-gateway -p /usr/local/api-gateway/ -c /etc/api-gateway/api-gateway.conf -g "daemon off; error_log /dev/stderr ${log_level}; env ACTIVE_ACTIVE=${active_active}; env ACTIVE_ACTIVE_SET_UPSTREAM_INTERVAL=${active_active_set_upstream_interval}; env ACTIVE_ACTIVE_STATUS_CHECK_INTERVAL=${active_active_status_check_interval}; env ACTIVE_ACTIVE_UPSTREAMS_CSV_PATH=${active_active_upstreams_csv_path};"
