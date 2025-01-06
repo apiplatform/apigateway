@@ -17,9 +17,6 @@ RUN mkdir -p /tmp/api-gateway \
     && curl -L https://github.com/adobe-apiplatform/api-gateway-config-supervisor/archive/${CONFIG_SUPERVISOR_VERSION}.tar.gz | tar -C /tmp/api-gateway -xz
 
 RUN cd /tmp/api-gateway/api-gateway-config-supervisor-${CONFIG_SUPERVISOR_VERSION} \
-    && make setup \
-    && go mod init \
-    && go mod vendor \
     && CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags "-s" -a -installsuffix cgo -o api-gateway-config-supervisor ./ \
     && mv /tmp/api-gateway/api-gateway-config-supervisor-${CONFIG_SUPERVISOR_VERSION}/api-gateway-config-supervisor /tmp/
 
