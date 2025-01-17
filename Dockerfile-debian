@@ -7,6 +7,9 @@ ARG TARGETARCH="amd64"
 ARG TARGETPLATFORM="linux/amd64"
 ARG CONFIG_SUPERVISOR_VERSION
 
+RUN echo $TARGETARCH
+RUN echo $TARGETOS
+
 RUN apt-get update && \
     apt-get install -y curl make && \
     apt-get clean && \
