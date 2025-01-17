@@ -246,7 +246,7 @@ RUN apt-get -y remove --purge --allow-remove-essential make unzip gcc git zlib1g
 
 
 # Final image stage
-FROM ${BASE_REGISTRY}/debian:10-slim
+FROM ${BASE_REGISTRY}/debian:11-slim
 
 COPY --from=builder /tmp/api-gateway-config-supervisor /usr/local/sbin/
 COPY --from=builder /usr/local/api-gateway/ /usr/local/api-gateway/
