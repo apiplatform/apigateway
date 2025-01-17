@@ -4,6 +4,7 @@ FROM ${BASE_REGISTRY}/golang:1.23.4-bullseye AS builder
 
 ARG TARGETOS="linux"
 ARG TARGETARCH="amd64"
+ARG TARGETPLATFORM="linux/amd64"
 ARG CONFIG_SUPERVISOR_VERSION
 
 RUN apt-get update && \
