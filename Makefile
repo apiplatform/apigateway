@@ -11,7 +11,7 @@ docker-debian:
 	docker build --build-arg BASE_REGISTRY=${BASE_REGISTRY} --build-arg CONFIG_SUPERVISOR_VERSION=${CONFIG_SUPERVISOR_VERSION} -t ${IMAGE_NAME}:10-debian-1.21.4.2 -f Dockerfile-debian .
 
 docker-debian-multiarch-push:
-	docker buildx build --platform linux/arm64 --build-arg BASE_REGISTRY=${BASE_REGISTRY} --build-arg CONFIG_SUPERVISOR_VERSION=${CONFIG_SUPERVISOR_VERSION} --push -t $(DOCKER_REGISTRY)/${IMAGE_NAME}:$(DOCKER_TAG) -f Dockerfile-debian .
+	docker buildx build --platform linux/amd64,linux/arm64 --build-arg BASE_REGISTRY=${BASE_REGISTRY} --build-arg CONFIG_SUPERVISOR_VERSION=${CONFIG_SUPERVISOR_VERSION} --push -t $(DOCKER_REGISTRY)/${IMAGE_NAME}:$(DOCKER_TAG) -f Dockerfile-debian .
 
 .PHONY: docker-ssh
 docker-ssh:
